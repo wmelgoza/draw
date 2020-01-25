@@ -2,8 +2,9 @@ var draw = (function() {
 
     //Get the height and width of the main we will use this set canvas to the full
     //size of the main element.
-    var mWidth = document.querySelector('main').offsetWidth,
-      mHeight = document.querySelector('main').offsetHeight,
+    main = document.querySelector('main');
+    var mWidth = document.querySelector('main').offsetWidth;
+    var mHeight = document.querySelector('main').offsetHeight;
   
       //Create the canvas
       canvas = document.createElement("canvas"),
@@ -15,7 +16,7 @@ var draw = (function() {
       rect = canvas.getBoundingClientRect(),
 
       //Create the initial bounding triangle
-      triangle = canvas.getBoundingClientTriangle(),
+     // triangle = canvas.getBoundingClientTriangle(),
   
      //current x,y
      x=0,
@@ -27,11 +28,11 @@ var draw = (function() {
 
      //ending x,y
      x2=0,
-     y2=0;
+     y2=0,
 
      //triangle ending x,y
-     x3=0
-     y3=0
+    // x3=0,
+    // y3=0,
 
      //Tracks the last x,y state
      lx = false,
@@ -42,6 +43,16 @@ var draw = (function() {
 
      //Are we still drawing?
      isDrawing=false;
+
+    //stroke color
+    stroke='';
+
+    //fill color
+    fill='';
+
+    //3 point variables
+    points = [];
+    i = 0;
   
     return {
       //Set the x,y coords based on current event data
@@ -75,7 +86,7 @@ var draw = (function() {
       shape = shp;
       },
 
-      getShape: function() {
+      getShape: function() { 
         return shape;
       },
 
@@ -98,10 +109,11 @@ var draw = (function() {
             this.drawCircle();
           } else if( shape==='path' ) {
             this.drawPath();
-          }  else if(shape==='triangle') {
+          }  else if( shape==='triangle' ) {
             this.drawTriangle();
+            }  else {
             alert('Please choose a shape');
-        }
+            }
         ctx.save();
         },
 
@@ -150,9 +162,16 @@ var draw = (function() {
 
       //Draw a Triangle
       drawTriangle: function() {
+        console.log(12334)
       //start with random fill color.
       ctx.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
-      ctx.fillTriangle (x1,y1(x3-x1),(y3-y1));
+      ctx.beginPath();
+      ctx.moveTo(x1,y2);
+      ctx.lineTo(x2,y2);
+      ctx.lineTo(x3,y3);
+      ctx.closePath(x1,y1);
+      ctx.stroke();
+    
       },
   
       getCanvas: function(){
