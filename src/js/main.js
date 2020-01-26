@@ -162,7 +162,7 @@ var draw = (function() {
 
       //Draw a Triangle
       drawTriangle: function() {
-        console.log(12334)
+       console.log()
       //start with random fill color.
       ctx.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
       ctx.beginPath();
